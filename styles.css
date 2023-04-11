@@ -1,0 +1,76 @@
+/*
+
+header selector rule
+    even margin around header 
+    
+body rule
+    no margin
+*/
+
+html {
+  height: 100vh;
+  width: 100vw;
+  font-size: 62.5%;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: #E7F1F1;
+}
+
+h1 {
+  font-size: 7rem;
+  font-weight: 900;
+}
+
+.boxes {
+  height: 50vh;
+  width: 80vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.boxes__container {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.boxes__box1, .boxes__box2, .boxes__box3, .boxes__box4, .boxes__box5 {
+    height: 20em;
+    width: 20em;
+    border: solid 5px black;
+}
+
+.boxes__box1 {
+    background-color: #EA9999;
+}
+
+.boxes__box2 {
+    background-color: #FACB9C;
+}
+
+.boxes__box3 {
+    background-color: #FFE59A;
+}
+
+.boxes__box4 {
+    background-color: #B6D7A8;
+}
+
+.boxes__box5 {
+    background-color: #A4C4CA;
+}
+
+p {
+  font-size: 2rem;
+  font-weight: 400;
+}
