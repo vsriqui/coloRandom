@@ -16,7 +16,7 @@ var hex5 = document.querySelector(".boxes__hex5");
 
 // ** Arrays ** //
 
-var alphabet = ["A","B","C","D","E","F"];
+var characters = ['A', 'B', 'C', 'D', 'E', 'F', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 var currentColors = [];
 
 // ** Buttons ** //
@@ -31,20 +31,10 @@ newButton.addEventListener('click', changeColors);
 
 // ** Random Palette ** //
 
-function getRandomNumber () {
-    var index = Math.floor(Math.random() * 10);
-    return index;
-};
-
-function getRandomLetter() {
-    var index = Math.floor(Math.random() * 6);
-    var letter = alphabet[index];
-    return letter;
-};
-
-function getRandomIndex() {
-    var index = Math.floor(Math.random() * 2);
-    return index;
+function getRandomChar() {
+    var index = Math.floor(Math.random() * characters.length);
+    var character = characters[index];
+    return character;
 };
 
 function getRandomColors() {
@@ -52,11 +42,7 @@ function getRandomColors() {
     for (var j = 0; j < 5; j++) {
         var hex = ['#'];
         for(var i = 0; i < 6; i++) {
-            if (getRandomIndex()) {
-                hex.push(getRandomNumber());
-            } else {
-                hex.push(getRandomLetter());
-            }   
+            hex.push(getRandomChar())
         }
         randomColors.push(hex.join(''));
     }
