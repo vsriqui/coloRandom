@@ -4,6 +4,7 @@ var box2 = document.querySelector(".boxes__box2");
 var box3 = document.querySelector(".boxes__box3");
 var box4 = document.querySelector(".boxes__box4");
 var box5 = document.querySelector(".boxes__box5");
+var boxesContainer = document.querySelector('.boxes__container');
 var boxesAll = document.querySelectorAll('.boxes__box');
 var hexesAll = document.querySelectorAll('.boxes__hex');
 
@@ -32,9 +33,8 @@ newButton.addEventListener('click', changeColors);
 // ** Random Palette ** //
 
 function getRandomChar() {
-    var index = Math.floor(Math.random() * characters.length);
-    var character = characters[index];
-    return character;
+    var characters = ['A', 'B', 'C', 'D', 'E', 'F', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    return characters[Math.floor(Math.random() * characters.length)];
 };
 
 function getRandomColors() {
@@ -50,19 +50,18 @@ function getRandomColors() {
 };
   
 function changeColors() {
-    var randomColors = getRandomColors();
+    currentColors = getRandomColors();
     for (var i = 0; i < boxesAll.length; i++) {
-        boxesAll[i].style['background-color'] = randomColors[i];
-        hexesAll[i].innerText = randomColors[i];
+        boxesAll[i].style['background-color'] = currentColors[i];
+        hexesAll[i].innerText = currentColors[i];
     }
-    currentColors = randomColors;
 };
 
 
 
 var locked1 = document.querySelector(".boxes__locked1")
 var unlocked1 = document.querySelector(".boxes__unlocked1")
-var bool1 = [true];
+var bool1 = true;
 var lockbox1 = document.querySelector(".boxes__lockbox1");
 
 lockbox1.onclick = function() {
@@ -70,17 +69,17 @@ flipLock1(bool1)
 }
 
 function flipLock1(bool) {
-    if (bool[0] === false) {
-    bool.unshift(true);
-    bool.pop();
-    unlocked1.style.display = "block";    
-    locked1.style.display = "none"; 
-    return bool;
+    if (!bool) {
+        bool1 = true;
+        unlocked1.style.display = "block";    
+        locked1.style.display = "none"; 
     } else {
-    bool.unshift(false);
-    bool.pop();
-    unlocked1.style.display = "none";    
-    locked1.style.display = "block"; 
-    return bool;
+        bool1 = false;
+        unlocked1.style.display = "none";    
+        locked1.style.display = "block"; 
     }    
 }
+
+// boxesContainer.addEventListener('click', function(event) {
+//     console.log(event.target.closest('box'))
+// })
