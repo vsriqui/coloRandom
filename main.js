@@ -58,3 +58,29 @@ function changeColors() {
     currentColors = randomColors;
 };
 
+
+
+var locked1 = document.querySelector(".boxes__locked1")
+var unlocked1 = document.querySelector(".boxes__unlocked1")
+var bool1 = [true];
+var lockbox1 = document.querySelector(".boxes__lockbox1");
+
+lockbox1.onclick = function() {
+flipLock1(bool1)
+}
+
+function flipLock1(bool) {
+    if (bool[0] === false) {
+    bool.unshift(true);
+    bool.pop();
+    unlocked1.style.display = "block";    
+    locked1.style.display = "none"; 
+    return bool;
+    } else {
+    bool.unshift(false);
+    bool.pop();
+    unlocked1.style.display = "none";    
+    locked1.style.display = "block"; 
+    return bool;
+    }    
+}
