@@ -5,40 +5,54 @@ html {
 }
 
 body {
+  display: flex;
+  background-color: #E7F1F1;
+}
+
+.random {
   height: 100vh;
-  width: 100vw;
+  width: 69vw;
   font-family: 'Poppins', sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  background-color: #E7F1F1;
+  border-right: solid 5px black;
 }
 
 h1 {
-  font-size: 7rem;
+  height: 10%;
+  width: 100%;
+  font-size: 7em;
   font-weight: 900;
+  margin: -0.69em;
+  text-align: center;
+  overflow: hidden;
 }
 
 .boxes {
-  height: 31vh;
-  width: 80vw;
+  /* height: 18%; */
+  width: 100%;
+  aspect-ratio: 5/1;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
+  overflow: hidden;
+  padding-inline: 10px;
 }
 
 .boxes__container {
-  width: 50%;
   display: flex;
   flex-direction: column;
-  align-items: center;   
+  align-items: center;  
+  height: 100%; 
 }
 
 .boxes__box {
-  min-height: 20em;
-  min-width: 20em;
-  border: solid 5px black;
+  height: 80%;
+  min-height: 10%;
+  aspect-ratio: 1 / 1;
+  border: solid 3px black;
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
@@ -64,9 +78,16 @@ h1 {
   background-color: #A4C4CA;
 }
 
-p {
-  font-size: 2rem;
+.boxes__hex {
+  height: 30%;
+  width: 100%;
+  font-size: 1.5em;
   font-weight: 400;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
 }
 
 .buttons {
@@ -87,21 +108,38 @@ p {
 
 .boxes__lockbox {
   height: 3.3em;
-  margin-bottom: .5em;
   border: none; 
-  background: none; 
+  background: none;
+  padding: 0;
+  margin-bottom: -.5em; 
 } 
 
 .boxes__unlocked {
-  height: 3em;
-  margin-bottom: .4em;
+  height: 2em;
 }
 
 .boxes__locked {
-  height: 3em;
-  margin-bottom: .4em;
+  height: 2em;
 }
 
 .hidden {
   display: none;
+}
+
+/* saved section */
+
+.saved {
+  height: 100vh;
+  width: 31vw;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+h2 {
+  font-size: 3rem;
+  font-weight: 500;
+  overflow: hidden;
 }
