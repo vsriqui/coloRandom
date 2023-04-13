@@ -1,12 +1,3 @@
-/*
-
-header selector rule
-    even margin around header 
-    
-body rule
-    no margin
-*/
-
 html {
   height: 100vh;
   width: 100vw;
@@ -38,40 +29,39 @@ h1 {
 }
 
 .boxes__container {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;   
 }
 
-.boxes__box1, .boxes__box2, .boxes__box3, .boxes__box4, .boxes__box5 {
-    min-height: 20em;
-    min-width: 20em;
-    border: solid 5px black;
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end
+.boxes__box {
+  min-height: 20em;
+  min-width: 20em;
+  border: solid 5px black;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
 }
 
 .boxes__box1 {
-    background-color: #EA9999;
+  background-color: #EA9999;
 }
 
 .boxes__box2 {
-    background-color: #FACB9C;
+  background-color: #FACB9C;
 }
 
 .boxes__box3 {
-    background-color: #FFE59A;
+  background-color: #FFE59A;
 }
 
 .boxes__box4 {
-    background-color: #B6D7A8;
+  background-color: #B6D7A8;
 }
 
 .boxes__box5 {
-    background-color: #A4C4CA;
+  background-color: #A4C4CA;
 }
 
 p {
@@ -95,67 +85,23 @@ p {
   font-family: 'Poppins', sans-serif;
 }
 
-  .boxes__lockbox {
+.boxes__lockbox {
   height: 3.3em;
   margin-bottom: .5em;
-   border: none; 
-   background: none; 
+  border: none; 
+  background: none; 
 } 
 
-.boxes__unlocked{
+.boxes__unlocked {
   height: 3em;
   margin-bottom: .4em;
 }
 
-.boxes__locked{
+.boxes__locked {
   height: 3em;
   margin-bottom: .4em;
 }
-
-/* .boxes__unlocked1 {
-  display: block;
-} */
-
-/* .boxes__locked1 {
-  display: none;
-} */
-
-/* .boxes__unlocked2 {
-  display: block;
-} */
-
-/* .boxes__locked2 {
-  display: none;
-} */
-
-/* .boxes__unlocked3 {
-  display: block;
-} */
-
-/* .boxes__locked3 {
-  display: none;
-} */
-
-/* .boxes__unlocked4 {
-  display: block;
-} */
-
-/* .boxes__locked4 {
-  display: none;
-} */
-
-/* .boxes__unlocked5 {
-  display: block;
-} */
-
-/* .boxes__locked5 {
-  display: none;
-}  */
 
 .hidden {
   display: none;
-}
-
-.locked {
-  
 }
