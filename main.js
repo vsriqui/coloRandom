@@ -1,60 +1,100 @@
-// ** Color Boxes ** //
-var box1 = document.querySelector(".boxes__box1");
-var box2 = document.querySelector(".boxes__box2");
-var box3 = document.querySelector(".boxes__box3");
-var box4 = document.querySelector(".boxes__box4");
-var box5 = document.querySelector(".boxes__box5");
-var boxesAll = document.querySelectorAll('.boxes__box');
-var hexesAll = document.querySelectorAll('.boxes__hex');
-
-// ** Color Hexes ** //
-var hex1 = document.querySelector(".boxes__hex1");
-var hex2 = document.querySelector(".boxes__hex2");
-var hex3 = document.querySelector(".boxes__hex3");
-var hex4 = document.querySelector(".boxes__hex4");
-var hex5 = document.querySelector(".boxes__hex5");
+// ** GLOBAL VARIABLES ** //
 
 // ** Arrays ** //
+var currentColors = ['#EA9999', '#FACB9C', '#FFE59A', '#B6D7A8', '#A4C4CA'];
 
-var characters = ['A', 'B', 'C', 'D', 'E', 'F', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-var currentColors = [];
+// ** Color Boxes ** //
+var boxesContainer = document.querySelector('.boxes__container');
+var boxesAll = document.querySelectorAll('.boxes__box');
+var boxesWrapper = document.querySelector('.boxes');
+
+// ** Color Hexes ** //
+var hexesAll = document.querySelectorAll('.boxes__hex');
 
 // ** Buttons ** //
 var newButton = document.querySelector(".buttons__new");
 
+// ** Locks ** // 
+var locked = document.querySelector('.boxes__locked');
+var unlocked = document.querySelector('.boxes_unlocked');
+
 // ** Event Listeners ** //
+newButton.addEventListener('click', changeDisplayColors);
 
-newButton.addEventListener('click', changeColors);
+boxesWrapper.addEventListener('click', function(event) {
+    if (event.target.classList.contains('boxes__unlocked') || event.target.classList.contains('boxes__locked')) {
+        flipLock(event.target);
+    }
+})
+
     
+// ** FUNCTIONS ** //
 
-// ** Functions ** //
-
-// ** Random Palette ** //
+// ** Generate Random Palette ** //
 
 function getRandomChar() {
-    var index = Math.floor(Math.random() * characters.length);
-    var character = characters[index];
-    return character;
+    var characters = ['A', 'B', 'C', 'D', 'E', 'F', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    return characters[Math.floor(Math.random() * characters.length)];
 };
+
+function generateRandomColor() {
+    var hex = ['#'];
+    for(var i = 0; i < 6; i++) {
+        hex.push(getRandomChar())
+    }
+    hex = hex.join('');
+    return hex;
+}
 
 function getRandomColors() {
     var randomColors = [];
-    for (var j = 0; j < 5; j++) {
-        var hex = ['#'];
-        for(var i = 0; i < 6; i++) {
-            hex.push(getRandomChar())
+    for (var i = 0; i < 5; i++) {
+        if (!boxesAll[i].classList.contains('locked')) {
+            // console.log('boxesAll:', boxesAll)
+            var newColor = generateRandomColor();
+            randomColors.push(newColor);
+            // console.log('random:', randomColors)
+        } else {
+            // console.log('currentColors[i]',currentColors[i])
+            randomColors.push(currentColors[i]);
+            // console.log('randomColors')
         }
-        randomColors.push(hex.join(''));
-    }
-    return randomColors;
-};
-  
-function changeColors() {
-    var randomColors = getRandomColors();
-    for (var i = 0; i < boxesAll.length; i++) {
-        boxesAll[i].style['background-color'] = randomColors[i];
-        hexesAll[i].innerText = randomColors[i];
     }
     currentColors = randomColors;
+
+    return currentColors;
 };
 
+  
+function changeDisplayColors() { 
+    getRandomColors();
+
+    for (var i = 0; i < boxesAll.length; i++) {
+        boxesAll[i].style['background-color'] = currentColors[i];
+        hexesAll[i].innerText = currentColors[i];
+    }
+};
+
+// ** Change Lock Display ** //
+
+function flipLock(element) {
+    if (element.classList.contains('boxes__unlocked')) {
+        hide(element);
+        show(element.nextElementSibling);
+        element.closest('box').classList.add('locked');
+    } else {
+        hide(element);
+        show(element.previousElementSibling);  
+        element.closest('box').classList.remove('locked'); 
+    }    
+}
+
+// ** Helper Functions ** //
+
+function show(element) {
+    element.classList.remove('hidden');
+}
+
+function hide(element) {
+    element.classList.add('hidden');
+}

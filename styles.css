@@ -49,6 +49,9 @@ h1 {
     min-height: 20em;
     min-width: 20em;
     border: solid 5px black;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end
 }
 
 .boxes__box1 {
@@ -90,4 +93,69 @@ p {
   font-size: 1.8em;
   font-weight: 500;
   font-family: 'Poppins', sans-serif;
+}
+
+  .boxes__lockbox {
+  height: 3.3em;
+  margin-bottom: .5em;
+   border: none; 
+   background: none; 
+} 
+
+.boxes__unlocked{
+  height: 3em;
+  margin-bottom: .4em;
+}
+
+.boxes__locked{
+  height: 3em;
+  margin-bottom: .4em;
+}
+
+/* .boxes__unlocked1 {
+  display: block;
+} */
+
+/* .boxes__locked1 {
+  display: none;
+} */
+
+/* .boxes__unlocked2 {
+  display: block;
+} */
+
+/* .boxes__locked2 {
+  display: none;
+} */
+
+/* .boxes__unlocked3 {
+  display: block;
+} */
+
+/* .boxes__locked3 {
+  display: none;
+} */
+
+/* .boxes__unlocked4 {
+  display: block;
+} */
+
+/* .boxes__locked4 {
+  display: none;
+} */
+
+/* .boxes__unlocked5 {
+  display: block;
+} */
+
+/* .boxes__locked5 {
+  display: none;
+}  */
+
+.hidden {
+  display: none;
+}
+
+.locked {
+  
 }
