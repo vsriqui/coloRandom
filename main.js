@@ -50,14 +50,10 @@ function getRandomColors() {
     var randomColors = [];
     for (var i = 0; i < 5; i++) {
         if (!boxesAll[i].classList.contains('locked')) {
-            // console.log('boxesAll:', boxesAll)
             var newColor = generateRandomColor();
             randomColors.push(newColor);
-            // console.log('random:', randomColors)
         } else {
-            // console.log('currentColors[i]',currentColors[i])
             randomColors.push(currentColors[i]);
-            // console.log('randomColors')
         }
     }
     currentColors = randomColors;
