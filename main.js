@@ -110,8 +110,12 @@ function displaySavedPalettes() {
         <box class='saved__box'></box>
         <box class='saved__box'></box>
     </box>`;
-    // for (var i = 0; i < 5; i++)
-    
+    var savedBoxes = document.querySelectorAll('.saved__box');
+    for (var j = 0; j < savedBoxes.length; j++) {
+        for (var i = 0; i < savedBoxes.length; i++) {
+            savedBoxes[i].style['background-color'] = savedPalettes[j][i];
+        }   
+    }   
 }
 
 saveButton.addEventListener('click', displaySavedPalettes);
