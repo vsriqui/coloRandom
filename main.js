@@ -2,6 +2,7 @@
 
 // ** Arrays ** //
 var currentColors = ['#EA9999', '#FACB9C', '#FFE59A', '#B6D7A8', '#A4C4CA'];
+var savedPalettes = [];
 
 // ** Color Boxes ** //
 var boxesContainer = document.querySelector('.boxes__container');
@@ -11,8 +12,12 @@ var boxesWrapper = document.querySelector('.boxes');
 // ** Color Hexes ** //
 var hexesAll = document.querySelectorAll('.boxes__hex');
 
+// ** Saved Palettes ** //
+var savedColors = document.querySelector('.saved__palettes');
+
 // ** Buttons ** //
 var newButton = document.querySelector(".buttons__new");
+var saveButton = document.querySelector('.buttons__save');
 
 // ** Locks ** // 
 var locked = document.querySelector('.boxes__locked');
@@ -27,6 +32,7 @@ boxesWrapper.addEventListener('click', function(event) {
     }
 })
 
+saveButton.addEventListener('click', displaySavedPalettes);
     
 // ** FUNCTIONS ** //
 
@@ -83,6 +89,25 @@ function flipLock(element) {
         show(element.previousElementSibling);  
         element.closest('box').classList.remove('locked'); 
     }    
+}
+
+// ** Saved Palettes ** //
+
+function displaySavedPalettes() {
+    savedPalettes.push(currentColors);
+
+    savedColors.innerHTML = '';
+    for (var j = 0; j < savedPalettes.length; j++) {
+        savedColors.innerHTML += 
+        `<box class='saved__boxes id:${Date.now()}'>
+            <box class='saved__box' style='background-color: ${savedPalettes[j][0]}'></box>
+            <box class='saved__box' style='background-color: ${savedPalettes[j][1]}'></box>
+            <box class='saved__box' style='background-color: ${savedPalettes[j][2]}'></box>
+            <box class='saved__box' style='background-color: ${savedPalettes[j][3]}'></box>
+            <box class='saved__box' style='background-color: ${savedPalettes[j][4]}'></box>
+        </box>`; 
+    }
+    changeDisplayColors();
 }
 
 // ** Helper Functions ** //
