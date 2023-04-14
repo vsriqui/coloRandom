@@ -24,14 +24,13 @@ h1 {
   height: 10%;
   width: 100%;
   font-size: 7em;
-  font-weight: 900;
+  font-weight: 800;
   margin: -0.69em;
   text-align: center;
   overflow: hidden;
 }
 
 .boxes {
-  /* height: 18%; */
   width: 100%;
   aspect-ratio: 5/1;
   display: flex;
@@ -81,20 +80,24 @@ h1 {
 .boxes__hex {
   height: 30%;
   width: 100%;
-  font-size: 1.5em;
+  font-size: 1.7em;
   font-weight: 400;
   margin: 0;
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  overflow: hidden;
 
 }
 
 .buttons {
   margin-top: 0;
+  display: flex;
+  justify-content: space-around;
+  width: 80%;
 }
 
-.buttons__new {
+.buttons__new, .buttons__save {
   border-bottom-left-radius: 40px;
   border-top-right-radius: 40px;
   background-color: black;
@@ -104,6 +107,8 @@ h1 {
   font-size: 1.8em;
   font-weight: 500;
   font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+  cursor: pointer;
 }
 
 .boxes__lockbox {
@@ -112,6 +117,7 @@ h1 {
   background: none;
   padding: 0;
   margin-bottom: -.5em; 
+  cursor: pointer;
 } 
 
 .boxes__unlocked {
@@ -139,7 +145,11 @@ h1 {
 }
 
 h2 {
-  font-size: 3rem;
-  font-weight: 500;
+  font-size: 4rem;
+  font-weight: 700;
   overflow: hidden;
+}
+
+@keyframes hover {
+
 }

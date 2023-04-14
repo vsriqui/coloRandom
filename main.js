@@ -2,6 +2,7 @@
 
 // ** Arrays ** //
 var currentColors = ['#EA9999', '#FACB9C', '#FFE59A', '#B6D7A8', '#A4C4CA'];
+var savedPalettes = [];
 
 // ** Color Boxes ** //
 var boxesContainer = document.querySelector('.boxes__container');
@@ -93,4 +94,8 @@ function show(element) {
 
 function hide(element) {
     element.classList.add('hidden');
+}
+
+function displaySavedPalettes() {
+
 }
