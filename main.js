@@ -32,7 +32,24 @@ boxesWrapper.addEventListener('click', function(event) {
     }
 })
 
-saveButton.addEventListener('click', displaySavedPalettes);
+saveButton.addEventListener('click', function() {
+    savePalettes();
+    displaySavedPalettes();
+})
+
+savedColors.addEventListener('click', function (event) {
+    if (event.target.classList.contains('saved__delete')){
+    var paletteId = parseInt(event.target.closest('.saved__boxes').id);
+    for (var i = 0; i < savedPalettes.length; i++) {
+        console.log(savedPalettes[i].id)
+        if(paletteId === savedPalettes[i].id) {
+            savedPalettes.splice(i, 1);
+        }
+    }
+    displaySavedPalettes()
+    }
+    
+})
     
 // ** FUNCTIONS ** //
 
@@ -93,18 +110,29 @@ function flipLock(element) {
 
 // ** Saved Palettes ** //
 
-function displaySavedPalettes() {
-    savedPalettes.push(currentColors);
+function savePalettes() {
+    var savedPalette = {
+        box1: currentColors[0],
+        box2: currentColors[1],
+        box3: currentColors[2],
+        box4: currentColors[3],
+        box5: currentColors[4],
+        id: Date.now()
+    }
+    savedPalettes.push(savedPalette);
+}
 
+function displaySavedPalettes() {
     savedColors.innerHTML = '';
     for (var j = 0; j < savedPalettes.length; j++) {
         savedColors.innerHTML += 
-        `<box class='saved__boxes id:${Date.now()}'>
-            <box class='saved__box' style='background-color: ${savedPalettes[j][0]}'></box>
-            <box class='saved__box' style='background-color: ${savedPalettes[j][1]}'></box>
-            <box class='saved__box' style='background-color: ${savedPalettes[j][2]}'></box>
-            <box class='saved__box' style='background-color: ${savedPalettes[j][3]}'></box>
-            <box class='saved__box' style='background-color: ${savedPalettes[j][4]}'></box>
+        `<box class='saved__boxes' id=${savedPalettes[j].id}>
+            <box class='saved__box' style='background-color: ${savedPalettes[j].box1}'></box>
+            <box class='saved__box' style='background-color: ${savedPalettes[j].box2}'></box>
+            <box class='saved__box' style='background-color: ${savedPalettes[j].box3}'></box>
+            <box class='saved__box' style='background-color: ${savedPalettes[j].box4}'></box>
+            <box class='saved__box' style='background-color: ${savedPalettes[j].box5}'></box>
+            <img alt="delete" src="assets/delete.png" class="saved__delete">
         </box>`; 
     }
     changeDisplayColors();
