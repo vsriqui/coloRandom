@@ -128,7 +128,7 @@ h1 {
   height: 2em;
 }
 
-.hidden {
+.boxes--hidden {
   display: none;
 }
 

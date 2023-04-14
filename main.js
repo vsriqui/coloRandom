@@ -1,59 +1,41 @@
-// ** GLOBAL VARIABLES ** //
-
-// ** Arrays ** //
+// ** DATA MODEL ** //
 var currentColors = ['#EA9999', '#FACB9C', '#FFE59A', '#B6D7A8', '#A4C4CA'];
 var savedPalettes = [];
 
-// ** Color Boxes ** //
+// ** VARIABLES ** //
 var boxesContainer = document.querySelector('.boxes__container');
-var boxesAll = document.querySelectorAll('.boxes__box');
 var boxesWrapper = document.querySelector('.boxes');
-
-// ** Color Hexes ** //
-var hexesAll = document.querySelectorAll('.boxes__hex');
-
-// ** Saved Palettes ** //
-var savedColors = document.querySelector('.saved__palettes');
-
-// ** Buttons ** //
-var newButton = document.querySelector(".buttons__new");
+var savedPalettesContainer = document.querySelector('.saved__palettes');
+var newButton = document.querySelector('.buttons__new');
 var saveButton = document.querySelector('.buttons__save');
-
-// ** Locks ** // 
 var locked = document.querySelector('.boxes__locked');
 var unlocked = document.querySelector('.boxes_unlocked');
+var boxesAll = document.querySelectorAll('.boxes__box');
+var hexesAll = document.querySelectorAll('.boxes__hex');
 
-// ** Event Listeners ** //
+// ** EVENT LISTENERS ** //
 newButton.addEventListener('click', changeDisplayColors);
 
 boxesWrapper.addEventListener('click', function(event) {
     if (event.target.classList.contains('boxes__unlocked') || event.target.classList.contains('boxes__locked')) {
         flipLock(event.target);
     }
-})
+});
 
 saveButton.addEventListener('click', function() {
     savePalettes();
     displaySavedPalettes();
-})
+});
 
-savedColors.addEventListener('click', function (event) {
-    if (event.target.classList.contains('saved__delete')){
-    var paletteId = parseInt(event.target.closest('.saved__boxes').id);
-    for (var i = 0; i < savedPalettes.length; i++) {
-        console.log(savedPalettes[i].id)
-        if(paletteId === savedPalettes[i].id) {
-            savedPalettes.splice(i, 1);
-        }
+savedPalettesContainer.addEventListener('click', function (event) {
+    if (event.target.classList.contains('saved__delete')) {
+        deletePalette(event);
     }
-    displaySavedPalettes()
-    }
-    
-})
-    
+});
+
 // ** FUNCTIONS ** //
 
-// ** Generate Random Palette ** //
+    // ** Main Section ** //
 
 function getRandomChar() {
     var characters = ['A', 'B', 'C', 'D', 'E', 'F', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
@@ -63,11 +45,11 @@ function getRandomChar() {
 function generateRandomColor() {
     var hex = ['#'];
     for(var i = 0; i < 6; i++) {
-        hex.push(getRandomChar())
+        hex.push(getRandomChar());
     }
     hex = hex.join('');
     return hex;
-}
+};
 
 function getRandomColors() {
     var randomColors = [];
@@ -94,8 +76,6 @@ function changeDisplayColors() {
     }
 };
 
-// ** Change Lock Display ** //
-
 function flipLock(element) {
     if (element.classList.contains('boxes__unlocked')) {
         hide(element);
@@ -106,9 +86,17 @@ function flipLock(element) {
         show(element.previousElementSibling);  
         element.closest('box').classList.remove('locked'); 
     }    
-}
+};
 
-// ** Saved Palettes ** //
+function show(element) {
+    element.classList.remove('boxes--hidden');
+};
+
+function hide(element) {
+    element.classList.add('boxes--hidden');
+};
+
+    // ** Saved Section ** //
 
 function savePalettes() {
     var savedPalette = {
@@ -118,32 +106,33 @@ function savePalettes() {
         box4: currentColors[3],
         box5: currentColors[4],
         id: Date.now()
-    }
+    };
     savedPalettes.push(savedPalette);
-}
+};
 
 function displaySavedPalettes() {
-    savedColors.innerHTML = '';
+    savedPalettesContainer.innerHTML = '';
     for (var j = 0; j < savedPalettes.length; j++) {
-        savedColors.innerHTML += 
+        savedPalettesContainer.innerHTML += 
         `<box class='saved__boxes' id=${savedPalettes[j].id}>
             <box class='saved__box' style='background-color: ${savedPalettes[j].box1}'></box>
             <box class='saved__box' style='background-color: ${savedPalettes[j].box2}'></box>
             <box class='saved__box' style='background-color: ${savedPalettes[j].box3}'></box>
             <box class='saved__box' style='background-color: ${savedPalettes[j].box4}'></box>
             <box class='saved__box' style='background-color: ${savedPalettes[j].box5}'></box>
-            <img alt="delete" src="assets/delete.png" class="saved__delete">
+            <img alt='delete' src='assets/delete.png' class='saved__delete'>
         </box>`; 
     }
     changeDisplayColors();
-}
+};
 
-// ** Helper Functions ** //
+function deletePalette(event) {
+    var paletteId = parseInt(event.target.closest('.saved__boxes').id);
+    for (var i = 0; i < savedPalettes.length; i++) {
+        if(paletteId === savedPalettes[i].id) {
+            savedPalettes.splice(i, 1);
+        }
+    }
+    displaySavedPalettes();
+};
 
-function show(element) {
-    element.classList.remove('hidden');
-}
-
-function hide(element) {
-    element.classList.add('hidden');
-}
