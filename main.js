@@ -12,8 +12,12 @@ var boxesWrapper = document.querySelector('.boxes');
 // ** Color Hexes ** //
 var hexesAll = document.querySelectorAll('.boxes__hex');
 
+// ** Saved Palettes ** //
+var savedColors = document.querySelector('.saved__palettes');
+
 // ** Buttons ** //
 var newButton = document.querySelector(".buttons__new");
+var saveButton = document.querySelector('.buttons__save');
 
 // ** Locks ** // 
 var locked = document.querySelector('.boxes__locked');
@@ -97,5 +101,17 @@ function hide(element) {
 }
 
 function displaySavedPalettes() {
-
+    savedPalettes.push(currentColors);
+    savedColors.innerHTML += 
+    `<box class='saved__boxes'>
+        <box class='saved__box'></box>
+        <box class='saved__box'></box>
+        <box class='saved__box'></box>
+        <box class='saved__box'></box>
+        <box class='saved__box'></box>
+    </box>`;
+    // for (var i = 0; i < 5; i++)
+    
 }
+
+saveButton.addEventListener('click', displaySavedPalettes);

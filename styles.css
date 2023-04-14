@@ -149,7 +149,22 @@ h2 {
   font-weight: 700;
   overflow: hidden;
 }
+.saved__palettes {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 90%;
 
-@keyframes hover {
+}
+.saved__boxes {
+  width: 100%;
+  height: 10%;
+  border: solid 5px black;
+  display: flex;
+}
 
+.saved__box {
+  height: 30%;
+  border: solid 2px red;
+  aspect-ratio: 1/1;
 }
