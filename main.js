@@ -37,9 +37,9 @@ saveButton.addEventListener('click', function() {
     displaySavedPalettes();
 })
 
-savedColors.addEventListener('dblclick', function (event) {
+savedColors.addEventListener('click', function (event) {
+    if (event.target.classList.contains('saved__delete')){
     var paletteId = parseInt(event.target.closest('.saved__boxes').id);
-    console.log(paletteId)
     for (var i = 0; i < savedPalettes.length; i++) {
         console.log(savedPalettes[i].id)
         if(paletteId === savedPalettes[i].id) {
@@ -47,6 +47,8 @@ savedColors.addEventListener('dblclick', function (event) {
         }
     }
     displaySavedPalettes()
+    }
+    
 })
     
 // ** FUNCTIONS ** //
