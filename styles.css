@@ -154,8 +154,9 @@ h2 {
   display: flex;
   flex-direction: column;
   height: 100%;
-  width: 80%;
+  width: 87%;
   align-items: center;
+  overflow: scroll;
 }
 
 .saved__message {
@@ -176,4 +177,11 @@ h2 {
   height: 50%;
   border: solid 2px black;
   aspect-ratio: 1/1;
+}
+
+.saved__delete {
+  height: 50%;
+  aspect-ratio: 1/1;
+  margin-left: 20px;
+  cursor: pointer;  
 }

@@ -105,6 +105,7 @@ function displaySavedPalettes() {
             <box class='saved__box' style='background-color: ${savedPalettes[j][2]}'></box>
             <box class='saved__box' style='background-color: ${savedPalettes[j][3]}'></box>
             <box class='saved__box' style='background-color: ${savedPalettes[j][4]}'></box>
+            <img alt="delete" src="assets/delete.png" class="saved__delete">
         </box>`; 
     }
     changeDisplayColors();
