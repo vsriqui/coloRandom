@@ -32,6 +32,7 @@ boxesWrapper.addEventListener('click', function(event) {
     }
 })
 
+saveButton.addEventListener('click', displaySavedPalettes);
     
 // ** FUNCTIONS ** //
 
@@ -102,20 +103,15 @@ function hide(element) {
 
 function displaySavedPalettes() {
     savedPalettes.push(currentColors);
-    savedColors.innerHTML += 
-    `<box class='saved__boxes'>
-        <box class='saved__box'></box>
-        <box class='saved__box'></box>
-        <box class='saved__box'></box>
-        <box class='saved__box'></box>
-        <box class='saved__box'></box>
-    </box>`;
-    var savedBoxes = document.querySelectorAll('.saved__box');
-    for (var j = 0; j < savedBoxes.length; j++) {
-        for (var i = 0; i < savedBoxes.length; i++) {
-            savedBoxes[i].style['background-color'] = savedPalettes[j][i];
-        }   
-    }   
+    savedColors.innerHTML = '';
+    for (var j = 0; j < savedPalettes.length; j++) {
+        savedColors.innerHTML += 
+        `<box class='saved__boxes id:${Date.now()}'>
+            <box class='saved__box' style='background-color: ${savedPalettes[j][0]}'></box>
+            <box class='saved__box' style='background-color: ${savedPalettes[j][1]}'></box>
+            <box class='saved__box' style='background-color: ${savedPalettes[j][2]}'></box>
+            <box class='saved__box' style='background-color: ${savedPalettes[j][3]}'></box>
+            <box class='saved__box' style='background-color: ${savedPalettes[j][4]}'></box>
+        </box>`; 
+    }
 }
-
-saveButton.addEventListener('click', displaySavedPalettes);
