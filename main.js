@@ -91,18 +91,11 @@ function flipLock(element) {
     }    
 }
 
-// ** Helper Functions ** //
-
-function show(element) {
-    element.classList.remove('hidden');
-}
-
-function hide(element) {
-    element.classList.add('hidden');
-}
+// ** Saved Palettes ** //
 
 function displaySavedPalettes() {
     savedPalettes.push(currentColors);
+
     savedColors.innerHTML = '';
     for (var j = 0; j < savedPalettes.length; j++) {
         savedColors.innerHTML += 
@@ -114,4 +107,15 @@ function displaySavedPalettes() {
             <box class='saved__box' style='background-color: ${savedPalettes[j][4]}'></box>
         </box>`; 
     }
+    changeDisplayColors();
+}
+
+// ** Helper Functions ** //
+
+function show(element) {
+    element.classList.remove('hidden');
+}
+
+function hide(element) {
+    element.classList.add('hidden');
 }

@@ -109,6 +109,7 @@ h1 {
   font-family: 'Poppins', sans-serif;
   overflow: hidden;
   cursor: pointer;
+  border: 0;
 }
 
 .boxes__lockbox {
@@ -154,8 +155,15 @@ h2 {
   flex-direction: column;
   height: 100%;
   width: 80%;
-
+  align-items: center;
 }
+
+.saved__message {
+  font-size: 1.7324rem;
+  opacity: 80%;
+  font-style: italic;
+}
+
 .saved__boxes {
   width: 100%;
   height: 10%;
