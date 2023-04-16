@@ -12,6 +12,7 @@ var locked = document.querySelector('.boxes__locked');
 var unlocked = document.querySelector('.boxes_unlocked');
 var boxesAll = document.querySelectorAll('.boxes__box');
 var hexesAll = document.querySelectorAll('.boxes__hex');
+var savedMessage = document.querySelector('.saved__message');
 
 // ** EVENT LISTENERS ** //
 newButton.addEventListener('click', changeDisplayColors);
@@ -24,12 +25,15 @@ boxesWrapper.addEventListener('click', function(event) {
 
 saveButton.addEventListener('click', function() {
     savePalettes();
-    displaySavedPalettes();
+    displaySavedPalettes(savedPalettes);
 });
 
 savedPalettesContainer.addEventListener('click', function (event) {
     if (event.target.classList.contains('saved__delete')) {
         deletePalette(event);
+    }
+    if (event.target.classList.contains('saved__box')) {
+        editPalette(event);
     }
 });
 
@@ -62,17 +66,19 @@ function getRandomColors() {
         }
     }
     currentColors = randomColors;
-
     return currentColors;
 };
 
   
 function changeDisplayColors() { 
     getRandomColors();
+    displayColors(currentColors);
+}
 
+function displayColors(palette) {    
     for (var i = 0; i < boxesAll.length; i++) {
-        boxesAll[i].style['background-color'] = currentColors[i];
-        hexesAll[i].innerText = currentColors[i];
+        boxesAll[i].style['background-color'] = palette[i];
+        hexesAll[i].innerText = palette[i];
     }
 };
 
@@ -110,29 +116,49 @@ function savePalettes() {
     savedPalettes.push(savedPalette);
 };
 
-function displaySavedPalettes() {
+function displaySavedPalettes(palette) {
     savedPalettesContainer.innerHTML = '';
-    for (var j = 0; j < savedPalettes.length; j++) {
+    for (var j = 0; j < palette.length; j++) {
         savedPalettesContainer.innerHTML += 
-        `<box class='saved__boxes' id=${savedPalettes[j].id}>
-            <box class='saved__box' style='background-color: ${savedPalettes[j].box1}'></box>
-            <box class='saved__box' style='background-color: ${savedPalettes[j].box2}'></box>
-            <box class='saved__box' style='background-color: ${savedPalettes[j].box3}'></box>
-            <box class='saved__box' style='background-color: ${savedPalettes[j].box4}'></box>
-            <box class='saved__box' style='background-color: ${savedPalettes[j].box5}'></box>
+        `<box class='saved__boxes' id=${palette[j].id}>
+            <box class='saved__box' style='background-color: ${palette[j].box1}'></box>
+            <box class='saved__box' style='background-color: ${palette[j].box2}'></box>
+            <box class='saved__box' style='background-color: ${palette[j].box3}'></box>
+            <box class='saved__box' style='background-color: ${palette[j].box4}'></box>
+            <box class='saved__box' style='background-color: ${palette[j].box5}'></box>
             <img alt='delete' src='assets/delete.png' class='saved__delete'>
         </box>`; 
     }
     changeDisplayColors();
+
+    if (savedPalettes.length === 0) {
+        savedPalettesContainer.innerHTML += "<p class='saved__message'>No saved palettes yet!</p>"
+    }
 };
 
 function deletePalette(event) {
     var paletteId = parseInt(event.target.closest('.saved__boxes').id);
     for (var i = 0; i < savedPalettes.length; i++) {
-        if(paletteId === savedPalettes[i].id) {
+        if (paletteId === savedPalettes[i].id) {
             savedPalettes.splice(i, 1);
         }
     }
-    displaySavedPalettes();
+    displaySavedPalettes(savedPalettes);
+};
+
+function editPalette(event) {
+    var palette = [];
+    var paletteId = parseInt(event.target.closest('.saved__boxes').id);
+    for (var i = 0; i < savedPalettes.length; i++) {
+        if(paletteId === savedPalettes[i].id) {
+            palette.push(savedPalettes[i].box1)
+            palette.push(savedPalettes[i].box2)
+            palette.push(savedPalettes[i].box3)
+            palette.push(savedPalettes[i].box4)
+            palette.push(savedPalettes[i].box5)
+        }
+    }
+    currentColors = palette;
+    displayColors(palette);
 };
 
