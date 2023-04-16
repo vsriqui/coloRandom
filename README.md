@@ -13,7 +13,7 @@ We built a web-based application that generates randomized 5-color palettes, inc
 
 ### Preview of App:
 [//]: <> (Provide ONE gif or screenshot of your application - choose the "coolest" piece of functionality to show off.)
-![scroll functionality](https://imgur.com/a/N0wLZh1.gif)
+![scroll functionality](https://imgur.com/MikTsSn.gif)
 
 ### Context:
 [//]: <> (Give some context for the project here. How long did you have to work on it? How far into the Turing program are you?)
