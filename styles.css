@@ -1,19 +1,28 @@
+/* GENERAL */
+
+* {
+  font-family: 'Poppins', sans-serif; 
+}
+
 html {
-  height: 100vh;
-  width: 100vw;
   font-size: 62.5%;
 }
 
-body {
+body, .boxes, .boxes__container, .boxes__box, main, .boxes__hex, .buttons, .saved, .saved__palettes, .saved__boxes  {
   display: flex;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
   background-color: #E7F1F1;
 }
 
-.random {
+/* MAIN SECTION */
+
+main {
   height: 100vh;
   width: 69vw;
-  font-family: 'Poppins', sans-serif;
-  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
@@ -32,16 +41,12 @@ h1 {
 
 .boxes {
   width: 100%;
-  aspect-ratio: 5/1;
-  display: flex;
-  flex-direction: row;
+  aspect-ratio: 5/1;  
   justify-content: space-around;
   overflow: hidden;
-  padding-inline: 10px;
 }
 
-.boxes__container {
-  display: flex;
+.boxes__container {  
   flex-direction: column;
   align-items: center;  
   height: 100%; 
@@ -52,7 +57,6 @@ h1 {
   min-height: 10%;
   aspect-ratio: 1 / 1;
   border: solid 3px black;
-  display: flex;
   justify-content: flex-end;
   align-items: flex-end;
 }
@@ -83,7 +87,6 @@ h1 {
   font-size: 1.7em;
   font-weight: 400;
   margin: 0;
-  display: flex;
   justify-content: center;
   align-items: flex-end;
   overflow: hidden;
@@ -91,7 +94,6 @@ h1 {
 
 .buttons {
   margin-top: 0;
-  display: flex;
   justify-content: space-around;
   width: 80%;
 }
@@ -105,7 +107,6 @@ h1 {
   height: 2.6em;
   font-size: 1.8em;
   font-weight: 500;
-  font-family: 'Poppins', sans-serif;
   overflow: hidden;
   cursor: pointer;
   border: 0;
@@ -120,11 +121,7 @@ h1 {
   cursor: pointer;
 } 
 
-.boxes__unlocked {
-  height: 2em;
-}
-
-.boxes__locked {
+.boxes__unlocked, .boxes__locked {
   height: 2em;
 }
 
@@ -132,13 +129,11 @@ h1 {
   display: none;
 }
 
-/* saved section */
+/* SAVED SECTION */
 
 .saved {
   height: 100vh;
   width: 31vw;
-  font-family: 'Poppins', sans-serif;
-  display: flex;
   flex-direction: column;
   align-items: center;
   overflow: hidden;
@@ -151,12 +146,12 @@ h2 {
 }
 
 .saved__palettes {
-  display: flex;
   flex-direction: column;
   height: 100%;
   width: 87%;
   align-items: center;
   overflow: scroll;
+  overflow-x: hidden;
 }
 
 .saved__message {
@@ -168,9 +163,9 @@ h2 {
 .saved__boxes {
   width: 100%;
   height: 10%;
-  display: flex;
   justify-content: space-around;
   align-items: center;
+  cursor: pointer;  
 }
 
 .saved__box {
