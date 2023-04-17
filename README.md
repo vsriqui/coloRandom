@@ -17,7 +17,7 @@ We built a web-based application that generates randomized 5-color palettes, inc
 
 ### Context:
 [//]: <> (Give some context for the project here. How long did you have to work on it? How far into the Turing program are you?)
-This project was assigned in Week 4 of Module 1 and we were given 8 days to complete it. As a group, we spent a total of 12 hours together working on the styling and functionality of the required features. We each spent several additional hours working independently to do research, generate ideas, and pseudocode solutions before bringing them to schedyked group meetings and were able to completet the base project requirements in just 5 days.
+This project was assigned in Week 4 of Module 1 and we were given 8 days to complete it. As a group, we spent a total of 12 hours together working on the styling and functionality of the required features. We each spent several additional hours working independently to do research, generate ideas, and pseudocode solutions before bringing them to scheduled group meetings and were able to complete the base project requirements in just 5 days.
 
 
 ### Contributors:
