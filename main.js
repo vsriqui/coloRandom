@@ -29,12 +29,12 @@ saveButton.addEventListener('click', function() {
 });
 
 savedPalettesContainer.addEventListener('click', function (event) {
+    var paletteId = parseInt(event.target.closest('.saved__boxes').id);  
     if (event.target.classList.contains('saved__delete')) {
-        deletePalette(event);
-    }
-    if (event.target.classList.contains('saved__box')) {
-        editPalette(event);
-    }
+            deletePalette(paletteId);
+        } else {
+            editPalette(paletteId);
+        }
 });
 
 // ** FUNCTIONS ** //
@@ -42,14 +42,14 @@ savedPalettesContainer.addEventListener('click', function (event) {
     // ** Main Section ** //
 
 function getRandomChar() {
-    var characters = ['A', 'B', 'C', 'D', 'E', 'F', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-    return characters[Math.floor(Math.random() * characters.length)];
+    var chars = ['A', 'B', 'C', 'D', 'E', 'F', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    return chars[Math.floor(Math.random() * chars.length)];
 };
 
 function generateRandomColor() {
     var hex = ['#'];
-    for(var i = 0; i < 6; i++) {
-        hex.push(getRandomChar());
+    for (var i = 0; i < 6; i++) {
+      hex.push(getRandomChar());
     }
     hex = hex.join('');
     return hex;
@@ -58,17 +58,16 @@ function generateRandomColor() {
 function getRandomColors() {
     var randomColors = [];
     for (var i = 0; i < 5; i++) {
-        if (!boxesAll[i].classList.contains('locked')) {
-            var newColor = generateRandomColor();
-            randomColors.push(newColor);
+        if (boxesAll[i].classList.contains('locked')) {
+            randomColors.push(currentColors[i]);  
         } else {
-            randomColors.push(currentColors[i]);
+            var newColor = generateRandomColor();
+            randomColors.push(newColor); 
         }
     }
     currentColors = randomColors;
     return currentColors;
 };
-
   
 function changeDisplayColors() { 
     getRandomColors();
@@ -116,49 +115,47 @@ function savePalettes() {
     savedPalettes.push(savedPalette);
 };
 
-function displaySavedPalettes(palette) {
+function displaySavedPalettes(palettes) {
     savedPalettesContainer.innerHTML = '';
-    for (var j = 0; j < palette.length; j++) {
+  
+    palettes.forEach(palette => {
         savedPalettesContainer.innerHTML += 
-        `<box class='saved__boxes' id=${palette[j].id}>
-            <box class='saved__box' style='background-color: ${palette[j].box1}'></box>
-            <box class='saved__box' style='background-color: ${palette[j].box2}'></box>
-            <box class='saved__box' style='background-color: ${palette[j].box3}'></box>
-            <box class='saved__box' style='background-color: ${palette[j].box4}'></box>
-            <box class='saved__box' style='background-color: ${palette[j].box5}'></box>
-            <img alt='delete' src='assets/delete.png' class='saved__delete'>
+        `<box class='saved__boxes' id=${palette.id}>
+          <box class='saved__box' style='background-color: ${palette.box1}'></box>
+          <box class='saved__box' style='background-color: ${palette.box2}'></box>
+          <box class='saved__box' style='background-color: ${palette.box3}'></box>
+          <box class='saved__box' style='background-color: ${palette.box4}'></box>
+          <box class='saved__box' style='background-color: ${palette.box5}'></box>
+          <img alt='delete' src='assets/delete.png' class='saved__delete'>
         </box>`; 
-    }
-    changeDisplayColors();
+    });
 
-    if (savedPalettes.length === 0) {
+    if (!savedPalettes.length) {
         savedPalettesContainer.innerHTML += "<p class='saved__message'>No saved palettes yet!</p>"
-    }
+    };
+
+    changeDisplayColors();
 };
 
-function deletePalette(event) {
-    var paletteId = parseInt(event.target.closest('.saved__boxes').id);
-    for (var i = 0; i < savedPalettes.length; i++) {
-        if (paletteId === savedPalettes[i].id) {
-            savedPalettes.splice(i, 1);
-        }
-    }
+function deletePalette(id) {
+    savedPalettes = savedPalettes.filter(palette => id !== palette.id);
     displaySavedPalettes(savedPalettes);
 };
 
-function editPalette(event) {
-    var palette = [];
-    var paletteId = parseInt(event.target.closest('.saved__boxes').id);
-    for (var i = 0; i < savedPalettes.length; i++) {
-        if(paletteId === savedPalettes[i].id) {
-            palette.push(savedPalettes[i].box1)
-            palette.push(savedPalettes[i].box2)
-            palette.push(savedPalettes[i].box3)
-            palette.push(savedPalettes[i].box4)
-            palette.push(savedPalettes[i].box5)
-        }
-    }
-    currentColors = palette;
-    displayColors(palette);
+function editPalette(id) {
+    var workingPalette = [];
+
+    savedPalettes.map(palette => {
+        if (id === palette.id) {
+            workingPalette.push(palette.box1)
+            workingPalette.push(palette.box2)
+            workingPalette.push(palette.box3)
+            workingPalette.push(palette.box4)
+            workingPalette.push(palette.box5)
+        };
+    });
+
+  currentColors = workingPalette;
+  displayColors(currentColors);
 };
 
