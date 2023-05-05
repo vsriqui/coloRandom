@@ -1,5 +1,5 @@
 // ** DATA MODEL ** //
-var currentColors = ['#EA9999', '#FACB9C', '#FFE59A', '#B6D7A8', '#A4C4CA'];
+var currentColors = [];
 var savedPalettes = [];
 
 // ** VARIABLES ** //
@@ -10,8 +10,8 @@ var newButton = document.querySelector('.buttons__new');
 var saveButton = document.querySelector('.buttons__save');
 var locked = document.querySelector('.boxes__locked');
 var unlocked = document.querySelector('.boxes_unlocked');
-var boxesAll = document.querySelectorAll('.boxes__box');
-var hexesAll = document.querySelectorAll('.boxes__hex');
+var boxesAll = Array.from(document.querySelectorAll('.boxes__box'));
+var hexesAll = Array.from(document.querySelectorAll('.boxes__hex'));
 var savedMessage = document.querySelector('.saved__message');
 
 // ** EVENT LISTENERS ** //
@@ -32,15 +32,15 @@ saveButton.addEventListener('click', function() {
 savedPalettesContainer.addEventListener('click', function (event) {
     var paletteId = parseInt(event.target.closest('.saved__boxes').id);  
     if (event.target.classList.contains('saved__delete')) {
-            deletePalette(paletteId);
-        } else {
-            editPalette(paletteId);
-        }
+        deletePalette(paletteId);
+    } else {
+        editPalette(paletteId);
+    }
 });
 
 // ** FUNCTIONS ** //
 
-    // ** Main Section ** //
+// ** Main Section ** //
 
 function getRandomChar() {
     var chars = ['A', 'B', 'C', 'D', 'E', 'F', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
@@ -50,24 +50,25 @@ function getRandomChar() {
 function generateRandomColor() {
     var hex = ['#'];
     for (var i = 0; i < 6; i++) {
-      hex.push(getRandomChar());
+        hex.push(getRandomChar());
     }
     hex = hex.join('');
     return hex;
 };
 
 function getRandomColors() {
-    var randomColors = [];
-    for (var i = 0; i < 5; i++) {
-        if (boxesAll[i].classList.contains('locked')) {
-            randomColors.push(currentColors[i]);  
-        } else {
-            var newColor = generateRandomColor();
-            randomColors.push(newColor); 
-        }
-    }
-    currentColors = randomColors;
-    return currentColors;
+  var randomColors = [];
+  boxesAll.forEach(box => {
+    if (box.classList.contains('locked')) {
+      randomColors.push(currentColors[boxesAll.indexOf(box)]); 
+    } else {
+        var newColor = generateRandomColor();
+        randomColors.push(newColor); 
+    };
+  });
+
+  currentColors = randomColors;
+  return currentColors;
 };
   
 function changeDisplayColors() { 
@@ -76,7 +77,7 @@ function changeDisplayColors() {
 }
 
 function displayColors(palette) {    
-    for (var i = 0; i < boxesAll.length; i++) {
+    for (var i = 0; i < 5; i++) {
         boxesAll[i].style['background-color'] = palette[i];
         hexesAll[i].innerText = palette[i];
     }
@@ -102,7 +103,7 @@ function hide(element) {
     element.classList.add('boxes--hidden');
 };
 
-    // ** Saved Section ** //
+// ** Saved Section ** //
 
 function savePalettes() {
     var savedPalette = {
@@ -159,4 +160,3 @@ function editPalette(id) {
   currentColors = workingPalette;
   displayColors(currentColors);
 };
-
