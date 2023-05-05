@@ -61,26 +61,6 @@ h1 {
   align-items: flex-end;
 }
 
-.boxes__box1 {
-  background-color: #EA9999;
-}
-
-.boxes__box2 {
-  background-color: #FACB9C;
-}
-
-.boxes__box3 {
-  background-color: #FFE59A;
-}
-
-.boxes__box4 {
-  background-color: #B6D7A8;
-}
-
-.boxes__box5 {
-  background-color: #A4C4CA;
-}
-
 .boxes__hex {
   height: 30%;
   width: 100%;
