@@ -15,6 +15,7 @@ var hexesAll = document.querySelectorAll('.boxes__hex');
 var savedMessage = document.querySelector('.saved__message');
 
 // ** EVENT LISTENERS ** //
+window.addEventListener('load', changeDisplayColors);
 newButton.addEventListener('click', changeDisplayColors);
 
 boxesWrapper.addEventListener('click', function(event) {
