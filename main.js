@@ -95,7 +95,7 @@ function flipLock(element) {
         hide(element);
         show(element.previousElementSibling);  
         element.closest('box').classList.remove('locked'); 
-    }    
+    };  
 };
 
 function show(element) {
